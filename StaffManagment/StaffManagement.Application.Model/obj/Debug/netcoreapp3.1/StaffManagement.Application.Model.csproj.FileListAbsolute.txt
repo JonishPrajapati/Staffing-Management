@@ -1,0 +1,13 @@
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\bin\Debug\netcoreapp3.1\StaffManagement.Application.Model.exe
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\bin\Debug\netcoreapp3.1\StaffManagement.Application.Model.deps.json
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\bin\Debug\netcoreapp3.1\StaffManagement.Application.Model.runtimeconfig.json
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\bin\Debug\netcoreapp3.1\StaffManagement.Application.Model.runtimeconfig.dev.json
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\bin\Debug\netcoreapp3.1\StaffManagement.Application.Model.dll
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\bin\Debug\netcoreapp3.1\StaffManagement.Application.Model.pdb
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\obj\Debug\netcoreapp3.1\StaffManagement.Application.Model.csprojAssemblyReference.cache
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\obj\Debug\netcoreapp3.1\StaffManagement.Application.Model.AssemblyInfoInputs.cache
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\obj\Debug\netcoreapp3.1\StaffManagement.Application.Model.AssemblyInfo.cs
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\obj\Debug\netcoreapp3.1\StaffManagement.Application.Model.csproj.CoreCompileInputs.cache
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\obj\Debug\netcoreapp3.1\StaffManagement.Application.Model.dll
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\obj\Debug\netcoreapp3.1\StaffManagement.Application.Model.pdb
+D:\Aqore 2020\Assignment\StaffManagment\StaffManagement.Application.Model\obj\Debug\netcoreapp3.1\StaffManagement.Application.Model.genruntimeconfig.cache

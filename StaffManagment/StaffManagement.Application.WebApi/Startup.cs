@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StaffManagement.Application.Service.Person;
 
 namespace StaffManagement.Application.WebApi
 {
@@ -25,7 +26,23 @@ namespace StaffManagement.Application.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMvcCore().AddNewtonsoftJson();
+
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowOrigin",
+                    builder =>
+                    {
+                        builder.WithOrigins("http://localhost:5500",
+                            "http://localhost:4200")
+                                .AllowAnyMethod()
+                                .AllowAnyHeader();
+                    });
+            });
             services.AddControllers();
+            services.AddTransient<IPersonService, PersonService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +56,8 @@ namespace StaffManagement.Application.WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseAuthorization();
 
