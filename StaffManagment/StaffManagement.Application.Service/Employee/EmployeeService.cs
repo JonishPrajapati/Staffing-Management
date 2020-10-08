@@ -9,12 +9,12 @@ using System.Text;
 
 namespace StaffManagement.Application.Service.Person
 {
-    public class PersonService : IPersonService
+    public class EmployeeService : IEmployeeService
     {
         private readonly string _connectionString;
         private DataAccessHelper _dah;
 
-        public PersonService(IConfiguration configuration)
+        public EmployeeService(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
             if (_connectionString != null)
@@ -22,26 +22,28 @@ namespace StaffManagement.Application.Service.Person
                 _dah = new DataAccessHelper(_connectionString);
             }
         }
-        public dynamic AddPerson(MvPerson person)
+        public dynamic AddEmployee(MvEmployee employee)
         {
-            var json = JsonConvert.SerializeObject(person);
+            var json = JsonConvert.SerializeObject(employee);
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpPersonIns", sql))
+                using (SqlCommand command = new SqlCommand("SpEmployeeTsk", sql))
                 {
-                    command.CommandType = (System.Data.CommandType.StoredProcedure); ;
+                    command.CommandType = (System.Data.CommandType.StoredProcedure);
                     command.Parameters.Add(new SqlParameter("@json", json));
                     command.ExecuteNonQuery();
-                    return person;
+                    return employee;
                 }
             }
         }
 
-        public dynamic GetPersonDetail()
+       
+
+        public dynamic GetEmployeeDetail()
         {
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpPersonSel", sql))
+                using (SqlCommand command = new SqlCommand("SpEmployeeSel", sql))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     using (var reader = command.ExecuteReader())
@@ -57,19 +59,20 @@ namespace StaffManagement.Application.Service.Person
             }
         }
 
-        public dynamic UpdatePerson(MvPerson person)
+        public dynamic UpdateEmployee(MvEmployee employee)
         {
-            var json = JsonConvert.SerializeObject(person);
+            var json = JsonConvert.SerializeObject(employee);
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpPersonUpd", sql))
+                using (SqlCommand command = new SqlCommand("SpPersonUpdTsk", sql))
                 {
                     command.CommandType = (System.Data.CommandType.StoredProcedure); ;
                     command.Parameters.Add(new SqlParameter("@json", json));
                     command.ExecuteNonQuery();
-                    return person;
+                    return employee;
                 }
             }
         }
+
     }
 }

@@ -5,10 +5,10 @@ using System.Text;
 
 namespace StaffManagement.Application.Service.Person
 {
-   public interface IPersonService
+   public interface IEmployeeService
     {
-        dynamic AddPerson(MvPerson person);
-        dynamic GetPersonDetail();
-        dynamic UpdatePerson(MvPerson person);
+        dynamic AddEmployee(MvEmployee employee);
+        dynamic GetEmployeeDetail();
+        dynamic UpdateEmployee(MvEmployee employee);
     }
 }

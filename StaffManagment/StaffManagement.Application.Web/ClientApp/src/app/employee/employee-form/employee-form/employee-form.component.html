@@ -1,0 +1,85 @@
+<h2 mat-dialog-title>{{action}}</h2> 
+
+  <form [formGroup]="employeeForm"
+        novalidate>
+        <mat-error *ngIf="errorMessage">
+          {{errorMessage}}
+        </mat-error>
+       
+    
+    <mat-form-field class="mat-text">
+      <input matInput type="text" 
+             placeholder="First Name"
+             formControlName="firstName"
+             [(ngModel)]="selectedEmployee.FirstName">      
+    </mat-form-field>
+    <br>
+    <mat-form-field class="mat-text">
+      <input matInput type="text"
+             placeholder="Middle Name"
+             formControlName="middleName"
+             [(ngModel)]="selectedEmployee.MiddleName">
+    </mat-form-field>
+    <br>
+   <mat-form-field class="mat-text">
+    <input matInput type="text" 
+           placeholder="LastName" 
+           formControlName="lastName"
+           [(ngModel)]="selectedEmployee.LastName">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="mat-text">
+   <input matInput type="text" 
+          placeholder="Gender" 
+          formControlName="gender"
+          [(ngModel)]="selectedEmployee.Gender">
+ </mat-form-field>
+ <br>
+ <mat-form-field class="mat-text">
+   <input matInput type="text"
+          placeholder="Country"
+          formControlName="country"
+          [(ngModel)]="selectedEmployee.Country">
+ </mat-form-field>
+ <br>
+<mat-form-field class="mat-text">
+ <input matInput type="text" 
+        placeholder="Province" 
+        formControlName="province"
+        [(ngModel)]="selectedEmployee.Province">
+</mat-form-field>
+<br>
+<mat-form-field class="mat-text">
+<input matInput type="text" 
+       placeholder="State" 
+       formControlName="state"
+       [(ngModel)]="selectedEmployee.State">
+</mat-form-field>
+<br>
+<mat-form-field class="mat-text">
+  <input matInput type="text"
+         placeholder="Mobile"
+         formControlName="phone"
+         [(ngModel)]="selectedEmployee.Phone">
+</mat-form-field>
+<br>
+<mat-form-field class="mat-text">
+<input matInput type="text" 
+       placeholder="Email" 
+       formControlName="email"
+       [(ngModel)]="selectedEmployee.Email">
+</mat-form-field>
+<br>
+<mat-form-field class="mat-text">
+<input matInput type="text" 
+      placeholder="Telephone" 
+      formControlName="telephone"
+      [(ngModel)]="selectedEmployee.Telephone">
+</mat-form-field>
+  </form>
+  <mat-dialog-actions>
+    <button mat-button (click)='onSubmit()' [disabled]="!employeeForm.valid" >Add</button>
+    <button mat-button  (click)='onClose()' > Cancel</button>
+  </mat-dialog-actions>
+
+

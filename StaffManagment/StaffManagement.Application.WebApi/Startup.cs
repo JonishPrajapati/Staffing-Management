@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StaffManagement.Application.Service.Address;
 using StaffManagement.Application.Service.Person;
 
 namespace StaffManagement.Application.WebApi
@@ -42,7 +43,8 @@ namespace StaffManagement.Application.WebApi
                     });
             });
             services.AddControllers();
-            services.AddTransient<IPersonService, PersonService>();
+            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<ICustomerService, CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

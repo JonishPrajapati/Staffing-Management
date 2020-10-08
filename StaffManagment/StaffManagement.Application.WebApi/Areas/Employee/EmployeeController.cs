@@ -9,13 +9,13 @@ using StaffManagement.Application.WebApi.Areas.Base;
 
 namespace StaffManagement.Application.WebApi.Areas.Person
 {
-    public class PersonController : BaseController
+    public class EmployeeController : BaseController
     {
-        private IPersonService _personService;
+        private IEmployeeService _employeeService;
 
-        public PersonController(IPersonService personService)
+        public EmployeeController(IEmployeeService employeeService)
         {
-            this._personService = personService;
+            this._employeeService = employeeService;
         }
         [HttpGet]
         public string getresult()
@@ -24,11 +24,11 @@ namespace StaffManagement.Application.WebApi.Areas.Person
         }
 
         [HttpPost]
-        public IActionResult PersonAdd([FromBody] MvPerson person)
+        public IActionResult EmployeeAdd([FromBody] MvEmployee employee)
         {
             try
             {
-                var data = _personService.AddPerson(person);
+                var data = _employeeService.AddEmployee(employee);
                 return Ok(data);
             }
             catch (Exception ex)
@@ -39,11 +39,11 @@ namespace StaffManagement.Application.WebApi.Areas.Person
         }
 
         [HttpGet]
-        public IActionResult GetPersonDetails()
+        public IActionResult GetEmployeeDetails()
         {
             try
             {
-                var details = _personService.GetPersonDetail();
+                var details = _employeeService.GetEmployeeDetail();
                 return Ok(details);
             }
             catch (Exception ex)
@@ -54,11 +54,11 @@ namespace StaffManagement.Application.WebApi.Areas.Person
         }
 
         [HttpPost]
-        public IActionResult PersonUpdate([FromBody] MvPerson person)
+        public IActionResult EmployeeUpdate([FromBody] MvEmployee employee)
         {
             try
             {
-                var data = _personService.UpdatePerson(person);
+                var data = _employeeService.UpdateEmployee(employee);
                 return Ok(data);
             }
             catch (Exception ex)

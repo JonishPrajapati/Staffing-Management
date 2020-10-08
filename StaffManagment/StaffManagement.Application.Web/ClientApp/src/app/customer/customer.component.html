@@ -1,0 +1,65 @@
+<div class="product-container">
+  <button mat-raised-button color="primary" (click) ='customerAdd()'>Add</button> &nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click) ='customerEdit()'>Edit</button>
+</div>
+ 
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="customerId">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.CustomerId}} </td>
+  </ng-container>
+  <ng-container matColumnDef="organizationName">
+    <th mat-header-cell *matHeaderCellDef> OrganizationName </th>
+    <td mat-cell *matCellDef="let element"> {{element.OrganizationName}} </td>
+  </ng-container>
+  <ng-container matColumnDef="organizationCategory">
+    <th mat-header-cell *matHeaderCellDef> Category </th>
+    <td mat-cell *matCellDef="let element"> {{element.OrganizationCategory}} </td>
+</ng-container>
+
+<ng-container matColumnDef="organizationDescription">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.OrganizationDescription}} </td>
+</ng-container>
+
+<ng-container matColumnDef="country">
+  <th mat-header-cell *matHeaderCellDef> Country </th>
+  <td mat-cell *matCellDef="let element"> {{element.Country}} </td>
+</ng-container>
+
+<ng-container matColumnDef="province">
+  <th mat-header-cell *matHeaderCellDef> Province </th>
+  <td mat-cell *matCellDef="let element"> {{element.Province}} </td>
+</ng-container>
+<ng-container matColumnDef="state">
+<th mat-header-cell *matHeaderCellDef> State </th>
+<td mat-cell *matCellDef="let element"> {{element.State}} </td>
+</ng-container>
+<ng-container matColumnDef="phone">
+  <th mat-header-cell *matHeaderCellDef> Mobile </th>
+  <td mat-cell *matCellDef="let element"> {{element.Phone}} </td>
+</ng-container>
+
+<ng-container matColumnDef="email">
+  <th mat-header-cell *matHeaderCellDef> email </th>
+  <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
+</ng-container>
+<ng-container matColumnDef="telephone">
+<th mat-header-cell *matHeaderCellDef> TelePhone </th>
+<td mat-cell *matCellDef="let element"> {{element.Telephone}} </td>
+</ng-container>
+<ng-container matColumnDef="insertPersonId">
+  <th mat-header-cell *matHeaderCellDef> Created By </th>
+  <td mat-cell *matCellDef="let element"> {{element.InsertPersonId}} </td>
+  </ng-container>
+
+<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick($event,row)"
+[ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true"
+(mouseout)="row.hovered = false"></tr>
+
+
+
+</table>
+<span *ngIf="productMsg != ''" style="color: red;font-size: medium;font-weight: bold;">No Records!</span>
