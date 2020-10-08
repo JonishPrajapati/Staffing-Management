@@ -26,6 +26,10 @@ namespace StaffManagement.Application.WebApi.Areas.Address
         [HttpPost]
         public IActionResult CustomerAdd([FromBody] MvCustomer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             try
             {
                 var data = _customerService.AddCustomer(customer);
@@ -40,6 +44,10 @@ namespace StaffManagement.Application.WebApi.Areas.Address
         [HttpGet]
         public IActionResult GetCustomerDetails()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             try
             {
                 var details = _customerService.GetCustomerDetail();
@@ -54,6 +62,10 @@ namespace StaffManagement.Application.WebApi.Areas.Address
         [HttpPost]
         public IActionResult CustomerUpdate([FromBody] MvCustomer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             try
             {
                 var data = _customerService.UpdateCustomer(customer);

@@ -3,28 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using StaffManagement.Application.Model.Person;
-using StaffManagement.Application.Service.Person;
+using StaffManagement.Application.Model.Job;
+using StaffManagement.Application.Service.Job;
 using StaffManagement.Application.WebApi.Areas.Base;
 
-namespace StaffManagement.Application.WebApi.Areas.Person
+namespace StaffManagement.Application.WebApi.Areas.Job
 {
-    public class EmployeeController : BaseController
+    public class JobController : BaseController
     {
-        private IEmployeeService _employeeService;
+        private IJobService _jobService;
 
-        public EmployeeController(IEmployeeService employeeService)
+        public JobController(IJobService jobService)
         {
-            this._employeeService = employeeService;
+            this._jobService = jobService;
         }
-        [HttpGet]
-        public string getresult()
-        {
-            return ("ok");
-        }
-
         [HttpPost]
-        public IActionResult EmployeeAdd([FromBody] MvEmployee employee)
+        public IActionResult JobAdd([FromBody] MvJob job)
         {
             if (!ModelState.IsValid)
             {
@@ -33,7 +27,7 @@ namespace StaffManagement.Application.WebApi.Areas.Person
 
             try
             {
-                var data = _employeeService.AddEmployee(employee);
+                var data = _jobService.AddJob(job);
                 return Ok(data);
             }
             catch (Exception ex)
@@ -44,7 +38,7 @@ namespace StaffManagement.Application.WebApi.Areas.Person
         }
 
         [HttpGet]
-        public IActionResult GetEmployeeDetails()
+        public IActionResult GetJobDetails()
         {
             if (!ModelState.IsValid)
             {
@@ -52,7 +46,7 @@ namespace StaffManagement.Application.WebApi.Areas.Person
             }
             try
             {
-                var details = _employeeService.GetEmployeeDetail();
+                var details = _jobService.GetJobDetail();
                 return Ok(details);
             }
             catch (Exception ex)
@@ -63,7 +57,7 @@ namespace StaffManagement.Application.WebApi.Areas.Person
         }
 
         [HttpPost]
-        public IActionResult EmployeeUpdate([FromBody] MvEmployee employee)
+        public IActionResult JobUpdate([FromBody] MvJob job)
         {
 
             if (!ModelState.IsValid)
@@ -72,7 +66,7 @@ namespace StaffManagement.Application.WebApi.Areas.Person
             }
             try
             {
-                var data = _employeeService.UpdateEmployee(employee);
+                var data = _jobService.UpdateJob(job);
                 return Ok(data);
             }
             catch (Exception ex)

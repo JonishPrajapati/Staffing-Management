@@ -1,5 +1,5 @@
 export interface MvCustomer {
-        organizationId: number,
+        customerId: number,
         organizationName: string,
         organizationCategory: string,
         organizationDescription: string,

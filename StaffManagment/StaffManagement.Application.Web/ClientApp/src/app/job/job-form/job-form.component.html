@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>{{action}}</h2> 
+
+  <form [formGroup]="jobForm"
+        novalidate>
+        <mat-error *ngIf="errorMessage">
+          {{errorMessage}}
+        </mat-error>
+       
+    
+    <mat-form-field class="mat-text">
+      <input matInput type="text" 
+             placeholder="Job Title"
+             formControlName="designation"
+             [(ngModel)]="selectedJob.Designation">      
+    </mat-form-field>
+    <br>
+    <!-- <mat-form-field class="mat-text">
+      <input matInput type="text"
+             placeholder="Customer Name"
+             formControlName="organizationName"
+             [(ngModel)]="selectedJob.OrganizationName">
+    </mat-form-field> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Customer</mat-label>
+      <mat-select formControlName="OrganizationId"  [(ngModel)]="selectedJob.OrganizationId">
+        <mat-option *ngFor="let cust of customers" [value] = "cust.OrganizationId" >
+          {{cust.customerName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+ 
+  </form>
+  <mat-dialog-actions>
+    <button mat-button (click)='onSubmit()' [disabled]="!jobForm.valid" >Add</button>
+    <button mat-button  (click)='onClose()' > Cancel</button>
+  </mat-dialog-actions>
+
+
