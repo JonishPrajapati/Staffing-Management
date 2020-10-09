@@ -11,8 +11,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using StaffManagement.Application.Service.Address;
+using StaffManagement.Application.Service.Assignment;
 using StaffManagement.Application.Service.Job;
 using StaffManagement.Application.Service.Person;
+using StaffManagement.Application.Service.Transaction;
 
 namespace StaffManagement.Application.WebApi
 {
@@ -47,6 +49,8 @@ namespace StaffManagement.Application.WebApi
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IJobService, JobService>();
+            services.AddTransient<IAssignmentService, AssignmentService>();
+            services.AddTransient<ITransactionService, TransactionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

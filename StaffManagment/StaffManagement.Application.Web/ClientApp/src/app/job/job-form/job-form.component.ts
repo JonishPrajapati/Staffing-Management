@@ -35,19 +35,19 @@ this.selectedJob = data.data || {};
   ngOnInit() {
     this.jobForm = this.fb.group({
       designation: [this.selectedJob.designation,Validators.required],
-      organizationId: [this.selectedJob.organizationId,Validators.required]
+      customerId: [this.selectedJob.customerId,Validators.required]
     })
     this.getCompanyName();
   }
 
   getCompanyName(){
-    this.customerService.customerDetails().subscribe((res) =>{
+    this.jobService.jobDetails().subscribe((res) =>{
       if(res && res.data){
         res.data.forEach(element => {
-          if(element.organizationName){
+          if(element.custpmerId){
             this.customers.push({
-                OrganizationId: element.OrganizationId,
-                customerName: element.CustomerName
+                customerId: element.customerId,
+                customerName: element.OrganizationName
             })
           }
         });

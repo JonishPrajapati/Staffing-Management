@@ -22,9 +22,9 @@
     </mat-form-field> -->
     <mat-form-field appearance="fill">
       <mat-label>Customer</mat-label>
-      <mat-select formControlName="OrganizationId"  [(ngModel)]="selectedJob.OrganizationId">
-        <mat-option *ngFor="let cust of customers" [value] = "cust.OrganizationId" >
-          {{cust.customerName}}
+      <mat-select formControlName="customerId"  [(ngModel)]="selectedJob.CustomerId">
+        <mat-option *ngFor="let cust of customers" [value] = "cust.customerId" >
+          {{cust.customer}}
         </mat-option>
       </mat-select>
     </mat-form-field>

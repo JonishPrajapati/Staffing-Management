@@ -1,0 +1,51 @@
+
+<h2 mat-dialog-title>{{action}}</h2> 
+
+  <form [formGroup]="assignmentForn"
+        novalidate>
+        <mat-error *ngIf="errorMessage">
+          {{errorMessage}}
+        </mat-error>
+       
+    
+    <mat-form-field class="mat-text">
+      <input matInput type="text" 
+             placeholder="Assignment Name"
+             formControlName="assignmentName"
+             [(ngModel)]="selectedAssignment.AssignmentName">      
+    </mat-form-field>
+    <br>
+    <mat-form-field class="mat-text">
+      <input matInput type="text"
+             placeholder="Category"
+             formControlName="firstName"
+             [(ngModel)]="selectedAssignment.FirstName">
+    </mat-form-field>
+    
+   <mat-form-field class="mat-text">
+    <input matInput type="text" 
+           placeholder="LastName" 
+           formControlName="lastName"
+           [(ngModel)]="selectedAssignment.LastName">
+  </mat-form-field>
+  
+ <mat-form-field class="mat-text">
+   <input matInput type="text"
+          placeholder="Job Titile"
+          formControlName="designation"
+          [(ngModel)]="selectedAssignment.Designation">
+ </mat-form-field>
+<mat-form-field class="mat-text">
+ <input matInput type="text" 
+        placeholder="Status" 
+        formControlName="status"
+        [(ngModel)]="selectedAssignment.Status">
+</mat-form-field>
+
+  </form>
+  <mat-dialog-actions>
+    <button mat-button (click)='onSubmit()' [disabled]="!assignmentForn.valid" >Add</button>
+    <button mat-button  (click)='onClose()' > Cancel</button>
+  </mat-dialog-actions>
+
+

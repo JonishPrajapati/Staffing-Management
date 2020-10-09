@@ -1,20 +1,20 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using StaffManagement.Application.DataAccess;
-using StaffManagement.Application.Model.Job;
+using StaffManagement.Application.Model.Transaction;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
 
-namespace StaffManagement.Application.Service.Job
+namespace StaffManagement.Application.Service.Transaction
 {
-    public class JobService : IJobService
+    public class TransactionService : ITransactionService
     {
         private readonly string _connectionString;
         private DataAccessHelper _dah;
 
-        public JobService(IConfiguration configuration)
+        public TransactionService(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("DefaultConnection");
             if (_connectionString != null)
@@ -22,33 +22,33 @@ namespace StaffManagement.Application.Service.Job
                 _dah = new DataAccessHelper(_connectionString);
             }
         }
-        public dynamic AddJob(MvJob job)
+        public dynamic AddTransaction(MvTransaction transaction)
         {
-            var json = JsonConvert.SerializeObject(job);
+            var json = JsonConvert.SerializeObject(transaction);
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpJobIns", sql))
+                using (SqlCommand command = new SqlCommand("SpTransactionIns", sql))
                 {
                     command.CommandType = (System.Data.CommandType.StoredProcedure);
                     command.Parameters.Add(new SqlParameter("@json", json));
                     command.ExecuteNonQuery();
-                    return job;
+                    return transaction;
                 }
             }
         }
 
-        public dynamic GetJobDetail()
+        public dynamic GetTransactionDetail()
         {
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpJobSel", sql))
+                using (SqlCommand command = new SqlCommand("SpTransactionSel", sql))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)
                         {
-                            Console.WriteLine("Job Detail");
+                            Console.WriteLine("Transaction Detail");
                             return _dah.GetJson(reader);
                         }
                         return null;
@@ -57,17 +57,17 @@ namespace StaffManagement.Application.Service.Job
             }
         }
 
-        public dynamic UpdateJob(MvJob job)
+        public dynamic UpdateTransaction(MvTransaction transaction)
         {
-            var json = JsonConvert.SerializeObject(job);
+            var json = JsonConvert.SerializeObject(transaction);
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpJobUpd", sql))
+                using (SqlCommand command = new SqlCommand("SpTransactionUpd", sql))
                 {
                     command.CommandType = (System.Data.CommandType.StoredProcedure); ;
                     command.Parameters.Add(new SqlParameter("@json", json));
                     command.ExecuteNonQuery();
-                    return job;
+                    return transaction;
                 }
             }
         }
