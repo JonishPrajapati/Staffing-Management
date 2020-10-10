@@ -32,6 +32,8 @@ export class JobComponent implements OnInit {
   }
   getAllJobs() {
     this.jobService.jobDetails().subscribe((response: any) => {
+      console.log(response,"name org");
+      
       if(response && response.data){
         this.dataSource = response.data;
       }else{
@@ -83,6 +85,8 @@ export class JobComponent implements OnInit {
             this.openSnackBar('Employee Successfully Addedd ','');
           })
         }
+      }else{
+        this.openSnackBar("Cancelled",'')
       }
     })
   }

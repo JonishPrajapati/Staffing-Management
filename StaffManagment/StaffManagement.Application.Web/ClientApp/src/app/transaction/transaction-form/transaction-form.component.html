@@ -1,0 +1,42 @@
+
+<h2 mat-dialog-title>{{action}}</h2> 
+
+<form [formGroup]="transactionForm"
+      novalidate>
+      <mat-error *ngIf="errorMessage">
+        {{errorMessage}}
+      </mat-error>
+     
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <mat-select formControlName="assignmentId"  [(ngModel)]="selectedTransaction.assignmentId">
+          <mat-option *ngFor="let assign of assignment" [value] = "assign.assignmentId" >
+            {{assign.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>&nbsp;&nbsp;
+  <br>
+  <mat-form-field class="mat-text">
+    <input matInput type="text" 
+           placeholder="Hour Work" 
+           formControlName="unit"
+           [(ngModel)]="selectedTransaction.unit">
+   </mat-form-field>
+   <br>
+   <mat-form-field class="mat-text">
+    <input matInput type="text" 
+           placeholder="Payment" 
+           formControlName="rate"
+           [(ngModel)]="selectedTransaction.rate">
+   </mat-form-field>
+ 
+  
+
+</form>
+<mat-dialog-actions>
+  <button mat-button (click)='onSubmit()' [disabled]="!transactionForm.valid" >Add</button>
+  <button mat-button  (click)='onClose()' > Cancel</button>
+</mat-dialog-actions>
+
+

@@ -13,6 +13,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TransactionService } from './transaction.service';
 import { CdkTableModule } from '@angular/cdk/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 
 const routes: Routes = [
   {
@@ -33,8 +34,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
+    CdkTableModule,
+    MatCheckboxModule
   ],
-  declarations: [TransactionComponent],
+  declarations: [TransactionComponent,TransactionFormComponent],
   providers: [TransactionService]
 })
 export class TransactionModule { }

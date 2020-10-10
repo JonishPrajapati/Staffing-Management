@@ -10,4 +10,6 @@ namespace StaffManagement.Application.Model.Transaction
         public int unit { get; set; }
         public int rate { get; set; }
     }
+ 
+
 }

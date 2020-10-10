@@ -103,20 +103,8 @@ export class AssignmentComponent implements OnInit {
       }
     })
   }
-  trasncationGenerate(){
-    if(!this.selectionBox.hasValue()){
-      this.openSnackBar("You haven't select any yet",'');
-      return;
-    }else{
-         
-           this.transactionService.transactionAdd(this.selectionBox.selected).subscribe(res=>{
-             this.openSnackBar("generated transaction sucessfully","");
-             this.getAllAssignment();
-           })
-         }
-    console.log("selected row", this.selectionBox.selected);
-    
-  }
+  
+  
 
   checkStatus(array):boolean{
      if(this.selectedAssignment.status === "Closed"){
