@@ -2,6 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TransactionService } from '../transaction/transaction.service';
 import { AssignmentFornComponent } from './assignment-forn/assignment-forn.component';
 import { MvAssignment } from './assignment.model';
 import { AssignmentService } from './assignment.service';
@@ -26,12 +27,13 @@ export class AssignmentComponent implements OnInit {
   constructor(
       private assignmentService: AssignmentService,
       private snacBar:MatSnackBar,
-      private dialog: MatDialog
+      private dialog: MatDialog,
+      private transactionService: TransactionService
   ) { }
 
   ngOnInit() {
     this.displayedColumns = ['select', 'assignmentId', 'assignmentName',
-                             'firstName', 'lastName', 'designation', 'status'];
+                             'firstName', 'designation', 'status'];
   this.getAllAssignment();
   }
 
@@ -55,6 +57,8 @@ export class AssignmentComponent implements OnInit {
       } else {
         this.openSnackBar("No Data Available here", '');
       }
+      console.log(this.dataSource);
+      
     })
   }
 
@@ -99,13 +103,33 @@ export class AssignmentComponent implements OnInit {
       }
     })
   }
+  trasncationGenerate(){
+    if(!this.selectionBox.hasValue()){
+      this.openSnackBar("You haven't select any yet",'');
+      return;
+    }else{
+         
+           this.transactionService.transactionAdd(this.selectionBox.selected).subscribe(res=>{
+             this.openSnackBar("generated transaction sucessfully","");
+             this.getAllAssignment();
+           })
+         }
+    console.log("selected row", this.selectionBox.selected);
+    
+  }
 
+  checkStatus(array):boolean{
+     if(this.selectedAssignment.status === "Closed"){
+        return false;
+     }else{
+       return true;
+     }
+  }
 
 
   rowClick(e: any, row: MvAssignment) {
     this.selectedAssignment = { ...row };
     this.selection.toggle(row);
-    this.selectionBox.toggle(row);
   }
 
 

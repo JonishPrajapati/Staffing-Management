@@ -37,17 +37,20 @@ this.selectedJob = data.data || {};
       designation: [this.selectedJob.designation,Validators.required],
       customerId: [this.selectedJob.customerId,Validators.required]
     })
-    this.getCompanyName();
+    this.getCompanyName(); 
+   
   }
+  
 
+/** Jobs are only created by registered company */
   getCompanyName(){
-    this.jobService.jobDetails().subscribe((res) =>{
+    this.customerService.customerDetails().subscribe((res) =>{
       if(res && res.data){
         res.data.forEach(element => {
-          if(element.custpmerId){
+          if(element.customerId){
             this.customers.push({
                 customerId: element.customerId,
-                customerName: element.OrganizationName
+                customerName: element.organizationName
             })
           }
         });

@@ -29,6 +29,16 @@ const routes: Routes = [
     path:'assignment',
 
     loadChildren:() => import('./assignment/assignment.module').then(m => m.AssignmentModule)
+  },
+  {
+    path:'login',
+
+    loadChildren:() => import('./login/login.module').then(m => m.LoginModule)
+  },
+  {
+    path:'transaction',
+    
+    loadChildren:() => import ('./transaction/transaction.module').then(m=> m.TransactionModule)
   }
 ]
 

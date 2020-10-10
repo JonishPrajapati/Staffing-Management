@@ -14,17 +14,12 @@
              [(ngModel)]="selectedJob.Designation">      
     </mat-form-field>
     <br>
-    <!-- <mat-form-field class="mat-text">
-      <input matInput type="text"
-             placeholder="Customer Name"
-             formControlName="organizationName"
-             [(ngModel)]="selectedJob.OrganizationName">
-    </mat-form-field> -->
+
     <mat-form-field appearance="fill">
       <mat-label>Customer</mat-label>
       <mat-select formControlName="customerId"  [(ngModel)]="selectedJob.CustomerId">
         <mat-option *ngFor="let cust of customers" [value] = "cust.customerId" >
-          {{cust.customer}}
+          {{cust.customerName}}
         </mat-option>
       </mat-select>
     </mat-form-field>

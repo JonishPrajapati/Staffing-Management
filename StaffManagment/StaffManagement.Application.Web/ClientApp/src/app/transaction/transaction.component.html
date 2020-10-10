@@ -1,7 +1,7 @@
 <div class="product-container">
-  <button mat-raised-button color="primary" (click) ='assignmentAdd()'>Add</button> &nbsp;&nbsp;&nbsp;
-  <button mat-raised-button color="primary" (click) ='assignmentEdit()'>Edit</button> &nbsp;&nbsp;&nbsp;
-  <button mat-raised-button color="primary" (click) ='trasncationGenerate()'>Generate Transaction</button>
+  <button mat-raised-button color="primary" (click) ='transactionAdd()'>Add</button> &nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click) ='transactionEdit()'>Edit</button> &nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click) ='invoiceGenerate()'>Generate Invoice</button>
 </div>
  
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -23,13 +23,13 @@
     </td>
   </ng-container>
 
-  <ng-container matColumnDef="assignmentId">
+  <ng-container matColumnDef="transactionId">
     <th mat-header-cell *matHeaderCellDef> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.AssignmentId}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.TransactionId}} </td>
   </ng-container>
-  <ng-container matColumnDef="assignmentName">
-    <th mat-header-cell *matHeaderCellDef> AssignmentName </th>
-    <td mat-cell *matCellDef="let element"> {{element.AssignmentName}} </td>
+  <ng-container matColumnDef="designation">
+    <th mat-header-cell *matHeaderCellDef> Job Title </th>
+    <td mat-cell *matCellDef="let element"> {{element.Designation}} </td>
   </ng-container>
   <ng-container matColumnDef="firstName">
     <th mat-header-cell *matHeaderCellDef> FirstName </th>
@@ -37,16 +37,31 @@
 </ng-container>
 
 
-<ng-container matColumnDef="designation">
-  <th mat-header-cell *matHeaderCellDef> Job Title </th>
-  <td mat-cell *matCellDef="let element"> {{element.Designation}} </td>
+<ng-container matColumnDef="organizationName">
+  <th mat-header-cell *matHeaderCellDef> Company Name </th>
+  <td mat-cell *matCellDef="let element"> {{element.OrganizationName}} </td>
 </ng-container>
 
-<ng-container matColumnDef="status">
-  <th mat-header-cell *matHeaderCellDef> Status </th>
-  <td mat-cell *matCellDef="let element"> {{element.Status}} </td>
+<ng-container matColumnDef="unit">
+  <th mat-header-cell *matHeaderCellDef> Hour </th>
+  <td mat-cell *matCellDef="let element"> {{element.Unit}} </td>
 </ng-container>
 
+<ng-container matColumnDef="rate">
+  <th mat-header-cell *matHeaderCellDef> Payment </th>
+  <td mat-cell *matCellDef="let element"> {{element.Rate}} </td>
+</ng-container>
+
+<ng-container matColumnDef="totalPaid">
+  <th mat-header-cell *matHeaderCellDef> Total Amount </th>
+  <td mat-cell *matCellDef="let element"> {{element.TotalPaid}} </td>
+</ng-container>
+
+
+<ng-container matColumnDef="invoiceId">
+  <th mat-header-cell *matHeaderCellDef> InvoiceId </th>
+  <td mat-cell *matCellDef="let element"> {{element.InvoiceId}} </td>
+</ng-container>
 <ng-container matColumnDef="insertPersonId">
   <th mat-header-cell *matHeaderCellDef> Created By </th>
   <td mat-cell *matCellDef="let element"> {{element.InsertPersonId}} </td>

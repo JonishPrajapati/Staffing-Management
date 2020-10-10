@@ -1,0 +1,25 @@
+<form [formGroup]="loginForm"
+class="child-container"
+(ngSubmit)="submitForm()"
+novalidate
+align="center">
+<mat-error *ngIf="errorMessage">
+  {{errorMessage}}
+</mat-error>
+
+<div class="header-container">Login</div>
+<mat-form-field class="mat-text">
+<input matInput type="text" 
+     placeholder="Username"
+     formControlName="Username">
+     
+</mat-form-field>
+<br><br>
+<mat-form-field class="mat-text">
+<input matInput type="password" placeholder="Password" formControlName="Password">
+<mat-break></mat-break>
+</mat-form-field>
+<br>
+<button mat-raised-button class="button-container"color="primary">Login</button>
+
+</form>

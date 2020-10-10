@@ -14,27 +14,32 @@
              formControlName="assignmentName"
              [(ngModel)]="selectedAssignment.AssignmentName">      
     </mat-form-field>
+
+
+    
     <br>
-    <mat-form-field class="mat-text">
+    <!-- <mat-form-field class="mat-text">
       <input matInput type="text"
-             placeholder="Category"
+             placeholder="FirstName"
              formControlName="firstName"
              [(ngModel)]="selectedAssignment.FirstName">
-    </mat-form-field>
-    
-   <mat-form-field class="mat-text">
-    <input matInput type="text" 
-           placeholder="LastName" 
-           formControlName="lastName"
-           [(ngModel)]="selectedAssignment.LastName">
-  </mat-form-field>
-  
- <mat-form-field class="mat-text">
-   <input matInput type="text"
-          placeholder="Job Titile"
-          formControlName="designation"
-          [(ngModel)]="selectedAssignment.Designation">
- </mat-form-field>
+    </mat-form-field> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Employee</mat-label>
+      <mat-select formControlName="employeeId"  [(ngModel)]="selectedAssignment.EmployeeId">
+        <mat-option *ngFor="let cust of employees" [value] = "cust.employeeId" >
+          {{cust.firstName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>&nbsp;&nbsp;
+ <mat-form-field appearance="fill">
+  <mat-label>Job</mat-label>
+  <mat-select formControlName="jobId"  [(ngModel)]="selectedAssignment.JobId">
+    <mat-option *ngFor="let job of jobs" [value] = "job.jobId" >
+      {{job.designation}}
+    </mat-option>
+  </mat-select>
+</mat-form-field> &nbsp;
 <mat-form-field class="mat-text">
  <input matInput type="text" 
         placeholder="Status" 
