@@ -12,21 +12,16 @@
       <input matInput type="text" 
              placeholder="Assignment Name"
              formControlName="assignmentName"
-             [(ngModel)]="selectedAssignment.AssignmentName">      
+             [(ngModel)]="selectedAssignment.assignmentName">      
     </mat-form-field>
 
 
     
     <br>
-    <!-- <mat-form-field class="mat-text">
-      <input matInput type="text"
-             placeholder="FirstName"
-             formControlName="firstName"
-             [(ngModel)]="selectedAssignment.FirstName">
-    </mat-form-field> -->
+    
     <mat-form-field appearance="fill">
       <mat-label>Employee</mat-label>
-      <mat-select formControlName="employeeId"  [(ngModel)]="selectedAssignment.EmployeeId">
+      <mat-select formControlName="employeeId"  [(ngModel)]="selectedAssignment.employeeId">
         <mat-option *ngFor="let cust of employees" [value] = "cust.employeeId" >
           {{cust.firstName}}
         </mat-option>
@@ -34,7 +29,7 @@
     </mat-form-field>&nbsp;&nbsp;
  <mat-form-field appearance="fill">
   <mat-label>Job</mat-label>
-  <mat-select formControlName="jobId"  [(ngModel)]="selectedAssignment.JobId">
+  <mat-select formControlName="jobId"  [(ngModel)]="selectedAssignment.jobId">
     <mat-option *ngFor="let job of jobs" [value] = "job.jobId" >
       {{job.designation}}
     </mat-option>
@@ -44,8 +39,20 @@
  <input matInput type="text" 
         placeholder="Status" 
         formControlName="status"
-        [(ngModel)]="selectedAssignment.Status">
+        [(ngModel)]="selectedAssignment.status">
 </mat-form-field>
+<mat-form-field class="mat-text">
+  <input matInput type="text" 
+         placeholder="Hour Worked" 
+         formControlName="unit"
+         [(ngModel)]="selectedAssignment.unit">
+ </mat-form-field>
+ <mat-form-field class="mat-text">
+  <input matInput type="text" 
+         placeholder="Payment Per Hour" 
+         formControlName="rate"
+         [(ngModel)]="selectedAssignment.rate">
+ </mat-form-field>
 
   </form>
   <mat-dialog-actions>

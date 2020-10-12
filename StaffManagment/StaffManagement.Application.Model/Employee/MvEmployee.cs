@@ -7,7 +7,7 @@ namespace StaffManagement.Application.Model.Person
 {
     public class MvEmployee
     {
-        public int customerId { get; set; }
+        public int employeeId { get; set; }
         [Required]
         public string firstName { get; set; }
         [Required]

@@ -2,6 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { InvoiceService } from '../invoice/invoice.service';
 import { TransactionFormComponent } from './transaction-form/transaction-form.component';
 import { MvTransaction } from './transaction.model';
 import { TransactionService } from './transaction.service';
@@ -22,6 +23,7 @@ export class TransactionComponent implements OnInit {
 
   constructor(
             private transactionService: TransactionService,
+            private invoiceService: InvoiceService,
             private snacBar: MatSnackBar,
             private dialog: MatDialog
   ) { }
@@ -31,7 +33,7 @@ export class TransactionComponent implements OnInit {
 
   ngOnInit() {
     this.displayedColumns = ['select','transactionId', 'assignmentName','organizationName','unit','rate',
-                             'firstName', 'designation'];
+                             'firstName', 'designation','totalpaid'];
   this.getAllTransaction();
   }
 
@@ -68,6 +70,30 @@ export class TransactionComponent implements OnInit {
   transactionEdit(){
     this.openDialog('Edit');
   }
+
+  generateInvoice(){
+    if (!this.selectionBox.hasValue()) {
+      this.openSnackBar("you haven't select any transaction to further proceed", "");
+      return;
+    } else {
+
+      if (this.checkInvoiceId(this.selectionBox.selected)) {
+        this.openSnackBar("Invoice already created", "");
+        return;
+      } else if (!this.checkCustomer(this.selectionBox.selected)) {
+        this.openSnackBar("Customer must be same", "");
+        return;
+      }
+      else {  
+
+        this.invoiceService.invoiceAdd(this.selectionBox.selected).subscribe(res => {
+          this.openSnackBar("generated successfully", "");
+          this.getAllTransaction();
+        });
+      }
+    }
+  }
+
   openDialog(action: string) {
     if (action === 'Edit' && !this.selection.hasValue()) {
       this.openSnackBar('Row has not been selected', "");
@@ -103,6 +129,29 @@ export class TransactionComponent implements OnInit {
     })
   }
   
+  checkInvoiceId(array): boolean {
+    let value = false;
+    array.forEach(checkRow => {
+      if (checkRow.InvoiceId) {
+        value = true;
+        return;
+      }
+    });
+    return value;
+  }
+  checkCustomer(array): boolean {
+    const initialCustomer = array[0].CustomerId;
+    let value = false;
+    array.forEach(checkRow => {
+      if (checkRow.InvoiceId) {
+        value = true;
+        return;
+      }
+    });
+    return array.every(transaction => transaction.CustomerId === initialCustomer);
+  }
+
+
   rowClick(e: any, row: MvTransaction) {
     this.selectedTransaction = { ...row };
     this.selection.toggle(row);

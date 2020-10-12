@@ -28,7 +28,7 @@ namespace StaffManagement.Application.Service.Invoice
             var json = JsonConvert.SerializeObject(invoice);
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpInvoiceIns", sql))
+                using (SqlCommand command = new SqlCommand("SpAssignmentIns", sql))
                 {
                     command.CommandType = (System.Data.CommandType.StoredProcedure);
                     command.Parameters.Add(new SqlParameter("@json", json));

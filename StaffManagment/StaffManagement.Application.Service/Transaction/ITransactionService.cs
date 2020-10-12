@@ -7,7 +7,7 @@ namespace StaffManagement.Application.Service.Transaction
 {
     public interface ITransactionService
     {
-        dynamic AddTransaction(MvTransaction transaction);
+        dynamic AddTransaction(IEnumerable<MvTransaction> transaction);
         dynamic GetTransactionDetail();
         dynamic UpdateTransaction(MvTransaction transaction);
     }

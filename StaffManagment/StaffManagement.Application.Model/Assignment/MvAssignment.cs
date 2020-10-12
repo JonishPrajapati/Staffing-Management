@@ -16,5 +16,9 @@ namespace StaffManagement.Application.Model.Assignment
         public int jobId { get; set; }
         [Required]
         public string status { get; set; }
+        [Required]
+        public int unit { get; set; }
+        [Required]
+        public int rate { get; set; }
     }
 }

@@ -33,7 +33,7 @@ export class AssignmentComponent implements OnInit {
 
   ngOnInit() {
     this.displayedColumns = ['select', 'assignmentId', 'assignmentName',
-                             'firstName', 'designation', 'status'];
+                             'firstName', 'designation', 'status','unit','rate'];
   this.getAllAssignment();
   }
 
@@ -100,18 +100,44 @@ export class AssignmentComponent implements OnInit {
             this.getAllAssignment();
           })
         }
+      }else{
+        this.openSnackBar("cancelled",'')
       }
     })
   }
   
-  
+  trasncationGenerate(){
+    if (!this.selectionBox.hasValue()) {
+      this.openSnackBar("you haven't select any assignment to further proceed", "");
+      return;
+    } else {
+      if(this.checkStatus(this.selectionBox.selected)){
+        this.openSnackBar("Assignment is Closed", "");
+      }else
+       { this.transactionService.transactionAdd(this.selectionBox.selected).subscribe(res => {
+          console.log(res);
+          
+          this.openSnackBar("generated successfully", "");
+          this.getAllAssignment();
+          
+        });
+      }
+      
+        
+    }
 
+  }
+
+  //checking whether the transaction of assignment is active or closed
   checkStatus(array):boolean{
-     if(this.selectedAssignment.status === "Closed"){
-        return false;
-     }else{
-       return true;
-     }
+    let check = false;
+    array.forEach(status => {
+        if(status.status != 'active'){
+              check = true;
+              return;
+        }
+    });
+    return check;
   }
 
 

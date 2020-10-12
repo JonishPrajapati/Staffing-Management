@@ -1,0 +1,35 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-subtitle>Summary</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>InvoiceId</th>
+          <th>Employee</th>
+          <th>Customer</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>{{selectedInvoice.invoiceId}}</td>
+          <td>{{selectedInvoice.firstName}}</td>
+          <td>{{selectedInvoice.organizationName}}</td>
+          <td>{{selectedInvoice.total.paid}}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </mat-card-content>
+</mat-card>
+
+
+
+<div mat-dialog-actions>
+<button mat-button (click)="cancelClick() " color="warn">Cancel</button>
+<button (click)="printInvoice()" mat-raised-button color="primary">Print</button>
+</div>

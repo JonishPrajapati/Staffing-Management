@@ -22,7 +22,7 @@ namespace StaffManagement.Application.Service.Transaction
                 _dah = new DataAccessHelper(_connectionString);
             }
         }
-        public dynamic AddTransaction(MvTransaction transaction)
+        public dynamic AddTransaction(IEnumerable<MvTransaction> transaction)
         {
             var json = JsonConvert.SerializeObject(transaction);
             using (var sql = _dah.GetConnection())

@@ -43,7 +43,9 @@ export class AssignmentFornComponent implements OnInit,AfterViewInit {
         assignmentName: ['',Validators.required],
         employeeId:[this.selectedAssignment.employeeId,Validators.required],
         jobId: [this.selectedAssignment.jobId,Validators.required],
-        status: ['',Validators.required]
+        status: ['',Validators.required],
+        unit: ['',[Validators.required, Validators.pattern("^[0-9]*$")]],
+        rate:['',[Validators.required, Validators.pattern("^[0-9]*$")]]
       })
       this.getEmployeeName();
       this.getJobTitle();

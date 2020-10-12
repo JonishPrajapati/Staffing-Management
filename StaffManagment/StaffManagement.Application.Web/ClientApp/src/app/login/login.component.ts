@@ -25,7 +25,11 @@ export class LoginComponent implements OnInit,AfterViewInit, OnDestroy  {
     private router: Router,
     private snacBar: MatSnackBar
   ) { }
-  ngOnDestroy(): void {
+  ngOnDestroy() {
+   
+  }
+  getUserDetails() {
+    throw new Error('Method not implemented.');
   }
   ngAfterViewInit(): void {
     this.loginForm.updateValueAndValidity();
@@ -39,8 +43,6 @@ export class LoginComponent implements OnInit,AfterViewInit, OnDestroy  {
   }
 
   submitForm(){
-    console.log("enter into form");
-    
      if(!this.loginForm.valid ){
        this.openSnackBar(this.errorMessageType.invalidForm, "");
      }else{
@@ -49,14 +51,9 @@ export class LoginComponent implements OnInit,AfterViewInit, OnDestroy  {
 
        this.loginService.getLogin(this.login).subscribe((res)=>{
          if(res){ 
-           console.log(res);
-           
-          // console.log(res.Login[0],"res");
-           
-            //localStorage.setItem('UserId', res.Login[0].UserId);
+           console.log("res",res);
+            localStorage.setItem('UserId', res.Login[0].UserId);
            this.openSnackBar("login successfully", "");
-           
-         //  this.router.navigate(['/user-detail']);
             
          }else{
            this.openSnackBar(this.errorMessageType.invalidLogin, "");

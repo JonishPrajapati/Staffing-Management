@@ -7,6 +7,8 @@ namespace StaffManagement.Application.Service.Account
 {
     public interface ILoginService
     {
-        dynamic GetLogin(MvLogin Login);
+        dynamic GetLogin(MvLogin login);
+        dynamic GetDetails(string json);
+        dynamic AllDetails();
     }
 }

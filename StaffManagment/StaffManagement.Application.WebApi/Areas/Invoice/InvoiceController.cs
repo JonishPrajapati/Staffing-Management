@@ -36,7 +36,7 @@ namespace StaffManagement.Application.WebApi.Areas.Invoice
 
         }
         [HttpPost]
-        public IActionResult GenerateInvoice([FromBody] IEnumerable<MvInvoice> invoice)
+        public IActionResult InvoiceAdd([FromBody] IEnumerable<MvInvoice> invoice)
         {
             if (!ModelState.IsValid)
             {

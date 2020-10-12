@@ -6,5 +6,7 @@ export interface MvAssignment {
     firstName: string,
     lastName: string,
     designation: string,
-    status: string
+    status: string,
+    unit: number,
+    rate: number
 }

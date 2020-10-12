@@ -9,15 +9,15 @@ namespace StaffManagement.Application.Model.Login
     {
         public int userId { get; set; }
         [Required]
-        public string username { get; set; }
+        public string Username { get; set; }
 
         [Required]
-        public string password { get; set; }
+        public string Password { get; set; }
 
         [Required]
-        public string firstName { get; set; }
+        public string FirstName { get; set; }
         [Required]
-        public string lastName { get; set; }
+        public string LastName { get; set; }
         
 
     }

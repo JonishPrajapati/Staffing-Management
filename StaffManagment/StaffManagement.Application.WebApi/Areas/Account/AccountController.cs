@@ -27,10 +27,10 @@ namespace StaffManagement.Application.WebApi.Areas.Account
         public IActionResult UserLogin([FromBody] MvLogin login)
         {
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest();
+            //}
 
             try
             {
@@ -43,5 +43,35 @@ namespace StaffManagement.Application.WebApi.Areas.Account
                 throw;
             }
         }
+        [HttpGet]
+        public IActionResult UserDetail(string json)
+        {
+
+            try
+            {
+                var data = _loginService.GetDetails(json);
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        [HttpGet]
+        public IActionResult AllUser()
+        {
+            try
+            {
+                var data = _loginService.AllDetails();
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+        }
     }
+   
 }

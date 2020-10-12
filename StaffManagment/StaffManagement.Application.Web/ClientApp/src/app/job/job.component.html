@@ -1,10 +1,10 @@
 <div class="product-container">
-  <button mat-raised-button color="primary" (click) ='jobAdd()'>Add</button> &nbsp;&nbsp;&nbsp;
-  <button mat-raised-button color="primary" (click) ='jobEdit()'>Edit</button>
+  <button mat-raised-button color="primary" (click)='jobAdd()'>Add</button>
+  &nbsp;&nbsp;&nbsp;
+  <button mat-raised-button color="primary" (click)='jobEdit()'>Edit</button>
 </div>
- 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="jobId">
     <th mat-header-cell *matHeaderCellDef> ID </th>
     <td mat-cell *matCellDef="let element"> {{element.jobId}} </td>
@@ -16,17 +16,19 @@
   <ng-container matColumnDef="organizationName">
     <th mat-header-cell *matHeaderCellDef> Company Name </th>
     <td mat-cell *matCellDef="let element"> {{element.organizationName}} </td>
-</ng-container>
-
-<ng-container matColumnDef="insertPersonId">
-  <th mat-header-cell *matHeaderCellDef> Created By </th>
-  <td mat-cell *matCellDef="let element"> {{element.InsertPersonId}} </td>
   </ng-container>
 
-<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-<tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="rowClick($event,row)"
-[ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}" (mouseover)="row.hovered = true"
-(mouseout)="row.hovered = false"></tr>
+  <ng-container matColumnDef="insertPersonId">
+    <th mat-header-cell *matHeaderCellDef> Created By </th>
+    <td mat-cell *matCellDef="let element"> {{element.InsertPersonId}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    (click)="rowClick($event,row)"
+    [ngClass]="{hovered: row.hovered, highlighted: selection.isSelected(row)}"
+    (mouseover)="row.hovered= true"
+    (mouseout)="row.hovered= false"></tr>
 
 
 

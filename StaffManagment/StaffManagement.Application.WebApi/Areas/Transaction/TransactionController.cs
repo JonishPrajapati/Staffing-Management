@@ -24,7 +24,7 @@ namespace StaffManagement.Application.WebApi.Areas.Transaction
             return ("ok");
         }
         [HttpPost]
-        public IActionResult TransactionAdd([FromBody] MvTransaction transaction)
+        public IActionResult TransactionAdd([FromBody] IEnumerable<MvTransaction> transaction)
         {
             if (!ModelState.IsValid)
             {

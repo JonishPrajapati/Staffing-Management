@@ -16,7 +16,7 @@ export class AssignmentService {
   assignmentDetails(){
     return this.api.get('assignment/GetAssignmentDetails')
   }
-  assignmentUpdate(json:any){
+  assignmentUpdate(json:any): Observable<any>{
     return this.api.post('assignment/AssignmentUpdate',json)
   }
 }

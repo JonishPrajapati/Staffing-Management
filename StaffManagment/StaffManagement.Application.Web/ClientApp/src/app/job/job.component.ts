@@ -2,6 +2,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { JobFormComponent } from './job-form/job-form.component';
 import { MvJob } from './job.model';
 import { JobService } from './job.service';
@@ -15,7 +16,7 @@ export class JobComponent implements OnInit {
 
   errorMessage:string = null
   displayedColumns: string[];
-  dataSource: MvJob[] = [];
+  dataSource:MatTableDataSource <MvJob>;
   selectedJob: MvJob = <MvJob>{};
   selection = new SelectionModel<MvJob>(false, []);
   
@@ -32,8 +33,6 @@ export class JobComponent implements OnInit {
   }
   getAllJobs() {
     this.jobService.jobDetails().subscribe((response: any) => {
-      console.log(response,"name org");
-      
       if(response && response.data){
         this.dataSource = response.data;
       }else{
