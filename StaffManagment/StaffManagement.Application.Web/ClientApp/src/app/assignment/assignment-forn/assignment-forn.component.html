@@ -17,7 +17,7 @@
 
 
     
-    <br>
+    
     
     <mat-form-field appearance="fill">
       <mat-label>Employee</mat-label>
@@ -27,6 +27,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>&nbsp;&nbsp;
+    <br>
  <mat-form-field appearance="fill">
   <mat-label>Job</mat-label>
   <mat-select formControlName="jobId"  [(ngModel)]="selectedAssignment.jobId">
@@ -34,19 +35,23 @@
       {{job.designation}}
     </mat-option>
   </mat-select>
+  
 </mat-form-field> &nbsp;
+
 <mat-form-field class="mat-text">
  <input matInput type="text" 
         placeholder="Status" 
         formControlName="status"
         [(ngModel)]="selectedAssignment.status">
 </mat-form-field>
+<br>
 <mat-form-field class="mat-text">
   <input matInput type="text" 
          placeholder="Hour Worked" 
          formControlName="unit"
          [(ngModel)]="selectedAssignment.unit">
  </mat-form-field>
+
  <mat-form-field class="mat-text">
   <input matInput type="text" 
          placeholder="Payment Per Hour" 

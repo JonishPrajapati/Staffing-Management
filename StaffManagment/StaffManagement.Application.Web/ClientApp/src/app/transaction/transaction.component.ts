@@ -14,7 +14,7 @@ import { TransactionService } from './transaction.service';
 })
 export class TransactionComponent implements OnInit {
 
-  errorMessage:string = null
+  errorMessage: string = null
   displayedColumns: string[];
   dataSource: MvTransaction[] = [];
   selectedTransaction: MvTransaction = <MvTransaction>{};
@@ -22,69 +22,69 @@ export class TransactionComponent implements OnInit {
   selectionBox = new SelectionModel<MvTransaction>(true, []);
 
   constructor(
-            private transactionService: TransactionService,
-            private invoiceService: InvoiceService,
-            private snacBar: MatSnackBar,
-            private dialog: MatDialog
+    private transactionService: TransactionService,
+    private invoiceService: InvoiceService,
+    private snacBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
 
 
 
   ngOnInit() {
-    this.displayedColumns = ['select','transactionId', 'assignmentName','organizationName','unit','rate',
-                             'firstName', 'designation','totalpaid'];
-  this.getAllTransaction();
+    this.displayedColumns = ['select', 'transactionId', 'assignmentName', 'organizationName', 'unit', 'rate',
+      'firstName', 'designation', 'totalpaid'];
+    this.getAllTransaction();
   }
 
 
-   /** Whether the number of selected elements matches the total number of rows. */
-   isAllSelected() {
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
     const numSelected = this.selectionBox.selected.length;
     const numRows = this.dataSource.length;
     return numSelected === numRows;
   }
 
- /** Selects all rows if they are not all selected; otherwise clear selection. */
- masterToggle() {
-  this.isAllSelected() ?
-    this.selectionBox.clear() :
-    this.dataSource.forEach(row => this.selectionBox.select(row));
-}
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected() ?
+      this.selectionBox.clear() :
+      this.dataSource.forEach(row => this.selectionBox.select(row));
+  }
   getAllTransaction() {
-    this.transactionService.transactionDetails().subscribe((response)=>{
-      if(response && response.data){
+    this.transactionService.transactionDetails().subscribe((response) => {
+      if (response && response.data) {
         this.dataSource = response.data;
-      }else{
-        this.openSnackBar("No Data Available here",'');
+      } else {
+        this.openSnackBar("No Data Available here", '');
       }
     })
   }
 
-  transactionAdd(){
+  transactionAdd() {
     this.selection.clear();
     this.selectedTransaction = <MvTransaction>{};
     this.openDialog('Add');
   }
 
-  transactionEdit(){
+  transactionEdit() {
     this.openDialog('Edit');
   }
 
-  generateInvoice(){
+  generateInvoice() {
     if (!this.selectionBox.hasValue()) {
       this.openSnackBar("you haven't select any transaction to further proceed", "");
       return;
     } else {
 
-      if (this.checkInvoiceId(this.selectionBox.selected)) {
-        this.openSnackBar("Invoice already created", "");
+      if (!this.checkCustomer(this.selectionBox.selected) && !this.checkEmployee(this.selectionBox.selected)) {
+
+        this.openSnackBar("Customer or Employee must be same", "");
         return;
-      } else if (!this.checkCustomer(this.selectionBox.selected)) {
-        this.openSnackBar("Customer must be same", "");
-        return;
+
+
       }
-      else {  
+      else {
 
         this.invoiceService.invoiceAdd(this.selectionBox.selected).subscribe(res => {
           this.openSnackBar("generated successfully", "");
@@ -105,10 +105,10 @@ export class TransactionComponent implements OnInit {
         data: this.selectedTransaction
       }
     });
-  
+
 
     dialogRef.afterClosed().subscribe((requestedRow) => {
- 
+
 
       if (requestedRow) {
         if (action === 'Edit') {
@@ -123,41 +123,41 @@ export class TransactionComponent implements OnInit {
             this.getAllTransaction();
           })
         }
-      }else{
-        this.openSnackBar("cancelled",'')
+      } else {
+        this.openSnackBar("cancelled", '')
       }
     })
   }
-  
-  checkInvoiceId(array): boolean {
-    let value = false;
-    array.forEach(checkRow => {
-      if (checkRow.InvoiceId) {
-        value = true;
-        return;
-      }
-    });
-    return value;
-  }
-  checkCustomer(array): boolean {
-    const initialCustomer = array[0].CustomerId;
-    let value = false;
-    array.forEach(checkRow => {
-      if (checkRow.InvoiceId) {
-        value = true;
-        return;
-      }
-    });
-    return array.every(transaction => transaction.CustomerId === initialCustomer);
-  }
 
+  checkCustomer(array): boolean {
+    const initialCustomer = array[0].customerId;
+    let value = false;
+    array.forEach(checkRow => {
+      if (checkRow.TransactioId) {
+        value = true;
+        return;
+      }
+    });
+    return array.every(selectedCustomer => selectedCustomer.customerId === initialCustomer);
+  }
+  checkEmployee(array): boolean {
+    const initialEmployee = array[0].employeeId;
+    let value = false;
+    array.forEach(checkRow =>{
+      if(checkRow.TransactionId){
+          value = true;
+          return;
+      }
+    })
+    return array.every(selectedEmployee => selectedEmployee.employeeId === initialEmployee);
+  }
 
   rowClick(e: any, row: MvTransaction) {
     this.selectedTransaction = { ...row };
     this.selection.toggle(row);
   }
 
-  openSnackBar(message, action)  {
+  openSnackBar(message, action) {
     this.snacBar.open(message, action, {
       duration: 3000,
       panelClass: ['login-snackbar'],

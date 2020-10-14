@@ -17,7 +17,8 @@ constructor(private api: WebapiService) { }
     invoiceDetails(){
       return this.api.get('invoice/GetInvoiceDetail')
     }
-    singleInvoiceDetails(InvoiceId): Observable<any>{
-      return this.api.get('invoice/GenerateSingleInvoice', JSON.stringify({InvoiceId : InvoiceId}));
+    singleInvoiceDetails(invoiceId): Observable<any>{
+      console.log("json",invoiceId)
+      return this.api.get('invoice/GenerateSingleInvoice', JSON.stringify({invoiceId : invoiceId}));
     }
 }

@@ -38,10 +38,7 @@ namespace StaffManagement.Application.WebApi.Areas.Invoice
         [HttpPost]
         public IActionResult InvoiceAdd([FromBody] IEnumerable<MvInvoice> invoice)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+          
             try
             {
                 var data = _invoiceService.AddInvoice(invoice);
@@ -56,10 +53,7 @@ namespace StaffManagement.Application.WebApi.Areas.Invoice
         [HttpGet]
         public IActionResult GenerateSingleInvoice(string json)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
+         
             try
             {
                 var data = _invoiceService.GetSingleInvoiceDetails(json);

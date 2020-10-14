@@ -28,7 +28,7 @@ namespace StaffManagement.Application.Service.Invoice
             var json = JsonConvert.SerializeObject(invoice);
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpAssignmentIns", sql))
+                using (SqlCommand command = new SqlCommand("SpInvoiceIns", sql))
                 {
                     command.CommandType = (System.Data.CommandType.StoredProcedure);
                     command.Parameters.Add(new SqlParameter("@json", json));
@@ -62,7 +62,7 @@ namespace StaffManagement.Application.Service.Invoice
         {
             using (var sql = _dah.GetConnection())
             {
-                using (SqlCommand command = new SqlCommand("SpInvoiceOneUser", sql))
+                using (SqlCommand command = new SqlCommand("SpInvoiceSelOneUser", sql))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@json", json));

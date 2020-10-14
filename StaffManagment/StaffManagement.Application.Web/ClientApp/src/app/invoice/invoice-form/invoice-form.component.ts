@@ -10,7 +10,7 @@ import { MvInvoice, MvInvoiceDetail } from '../invoice.model';
 export class InvoiceFormComponent implements OnInit {
 
 
-  
+  allTotal = 0;
   selectedInvoice: MvInvoice = <MvInvoice>{};
   selectedInvoiceDetail: MvInvoiceDetail = <MvInvoiceDetail>{};
  
@@ -21,7 +21,6 @@ export class InvoiceFormComponent implements OnInit {
     dialogRef.disableClose = true;
     this.selectedInvoice = this.data.invoice
     this.selectedInvoiceDetail = this.data.invoiceDetail;
-    
    }
 
   ngOnInit() {

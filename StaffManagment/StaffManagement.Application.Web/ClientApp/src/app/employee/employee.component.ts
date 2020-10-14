@@ -86,6 +86,8 @@ export class EmployeeComponent implements OnInit {
             this.openSnackBar('Employee Successfully Addedd ','');
           })
         }
+      }else {
+        this.openSnackBar('Cancelled ','');
       }
     })
   }

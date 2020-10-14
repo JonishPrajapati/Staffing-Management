@@ -1,12 +1,15 @@
 export interface MvInvoice {
     invoiceId: number;
-    totalpaid:number;
+    totalrate:number;
     employeeId: number;
     firstName:string;
+    lastName: string;
+    fullName:string
     customerId:number;
     organizationName: string;
 }
 export interface MvInvoiceDetail{
+    invoiceId: number;
     assignmentId: number;
     assignmentName: string;
     jobId: number;

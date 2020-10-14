@@ -18,7 +18,7 @@ export class InvoiceComponent implements OnInit {
   displayedColumns: string[];
   dataSource: MvInvoice[] = [];
   selectedInvoice: MvInvoice = <MvInvoice>{};
-  selectedInvoiceDetail: MvInvoiceDetail[]=[];
+  // selectedInvoiceDetail: MvInvoiceDetail[]=[];
   selection = new SelectionModel<MvInvoice>(false, []);
   
   constructor(private invoiceService: InvoiceService,
@@ -26,7 +26,7 @@ export class InvoiceComponent implements OnInit {
               private snacBar: MatSnackBar) { }
 
   ngOnInit() {
-    this.displayedColumns = ['invoiceId', 'firstName','organizationName','totalpaid'];
+    this.displayedColumns = ['invoiceId', 'fullName','organizationName','totalrate'];
     this.getInvoices();
   }
   getInvoices() {
@@ -34,7 +34,6 @@ export class InvoiceComponent implements OnInit {
       
       if(response && response.data){
         this.dataSource = response.data;
-        console.log(this.dataSource);
         
       }else{
       this.openSnackBar("no data","");
@@ -43,69 +42,44 @@ export class InvoiceComponent implements OnInit {
   }
 
   getInvoiceDetail(){
+  
     this.openDialog();
   }
 
-  openDialog(){
-    if(!this.selection.hasValue())
-    {
-      this.invoiceService.singleInvoiceDetails(this.selectedInvoice.invoiceId).subscribe(response =>{
-        
-        this.selectedInvoiceDetail=response.data
-          const dialogRef = this.dialog.open(InvoiceFormComponent,{
-             
-        data:{
-              invoice: this.selectedInvoice,
-              invoiceDetail: this.selectedInvoiceDetail
-        }
-      });
-      dialogRef.afterClosed().subscribe(action =>{
-        if(action === 'print'){
-          console.log(action);
-          
-          this.openSnackBar("Invoice has been printed Successfully","");
-        }else if(action === 'close'){
-          this.openSnackBar("Proceed Canceled","");
-        }
+
+  openDialog() {
+ 
+    if(this.selection.hasValue()){
+      this.invoiceService.singleInvoiceDetails(this.selectedInvoice.invoiceId).subscribe(res =>{
+        this.selectedInvoice = res.data
+        const dialogRef = this.dialog.open(InvoiceFormComponent,{
+          data:{ 
+            data: this.selectedInvoice
+          }
+        });
+        dialogRef.afterClosed().subscribe((action) =>{
+          if(action === 'print'){
+            console.log(action);
+            
+            this.openSnackBar("Invoice has been printed Successfully","");
+          }else if(action === 'close'){
+            this.openSnackBar("Proceed Canceled","");
+          }
+        })
       })
-        
-      })   
-    }else{
-      this.openSnackBar("Please select a row to generate Invoice","");
     }
+   
+   
   }
-
-  checkInvoiceId(array): boolean {
-    let value = false;
-    array.forEach(checkRow => {
-      if (checkRow.InvoiceId) {
-        value = true;
-        return;
-      }
-    });
-    return value;
-  }
-  checkCustomer(array): boolean {
-    const initialCustomer = array[0].CustomerId;
-    let value = false;
-    array.forEach(checkRow => {
-      if (checkRow.InvoiceId) {
-        value = true;
-        return;
-      }
-    });
-    return array.every(transaction => transaction.CustomerId === initialCustomer);
-  }
-
   rowClick(e: any, row: MvInvoice) {
     this.selectedInvoice = { ...row };
     this.selection.toggle(row);
+    console.log(row);
+    
   }
-
-
-  openSnackBar(message, action) {
-    this.snacBar.open(message, action, {
-      duration: 3000,
+  openSnackBar(message,action){
+    this.snacBar.open(message, action,{
+      duration:3000,
       panelClass: ['login-snackbar'],
       verticalPosition: 'top',
       horizontalPosition: 'right',
