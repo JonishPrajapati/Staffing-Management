@@ -1,3 +1,34 @@
+<!-- <mat-card>
+  <mat-card-header>
+    <mat-card-subtitle>Summary</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>AssignmentId</th>
+          <th>AssignmentName</th>
+          <th>Designation</th>
+          <th>Employee</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr>
+          <td>{{selectedInvoiceDetail.AssignmentId}}</td>
+          <td>{{selectedInvoiceDetail.AssignmentName}}</td>
+          <td>{{selectedInvoiceDetail.Designation}}</td>
+          <td>{{selectedInvoiceDetail.Employee}}</td>
+          <td>{{selectedInvoiceDetail.Amount}}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </mat-card-content>
+</mat-card> -->
+
 <mat-card>
   <mat-card-header>
     <mat-card-subtitle>Summary</mat-card-subtitle>
@@ -9,24 +40,34 @@
         <tr>
           <th>InvoiceId</th>
           <th>Employee</th>
-          <th>Customer</th>
+          <th>Assignment</th>
+          <th>Rate</th>
+          <th>Unit</th>
           <th>Amount</th>
         </tr>
       </thead>
       <tbody>
 
-        <tr>
+        <tr *ngFor = "let selectedInvoice of selectedInvoice">
           <td>{{selectedInvoice.invoiceId}}</td>
-          <td>{{selectedInvoice.fullName}}</td>
-          <td>{{selectedInvoice.organizationName}}</td>
-          <td>{{selectedInvoice.totalrate}}</td>
+          <td>{{selectedInvoice.name}}</td>
+          <td>{{selectedInvoice.assignmentName}}</td>
+          <td>{{selectedInvoice.rate}}</td>
+          <td>{{selectedInvoice.unit}}</td>
+          <td>{{selectedInvoice.totalPaid}}</td>
         </tr>
       </tbody>
-      
+      <tfoot>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{allTotal}}</td>
+      </tfoot>
     </table>
   </mat-card-content>
 </mat-card>
-
 
 
 <div mat-dialog-actions>

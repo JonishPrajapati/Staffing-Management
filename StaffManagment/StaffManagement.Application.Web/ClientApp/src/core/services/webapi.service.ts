@@ -17,6 +17,9 @@ export class WebapiService {
   get(url: string, params?: any): Observable<any> {
     return this.http.get(this.apiUrl + url, { headers: this.getHeaderOptions(), params:{json:params} });
   }
+  fetch(url: string, params?: any): Observable<any> {
+    return this.http.get(this.apiUrl + url, { headers: this.getHeaderOptions(), params:{invoiceId:params} });
+  }
   getHeaderOptions(): HttpHeaders {
   
     const headers = new HttpHeaders();

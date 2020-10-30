@@ -58,14 +58,15 @@ namespace StaffManagement.Application.Service.Invoice
             }
         }
 
-        public dynamic GetSingleInvoiceDetails(string json)
+        public dynamic GetSingleInvoiceDetails(MvInvoice invoice)
         {
+            var jsonConvert = JsonConvert.SerializeObject(invoice);
             using (var sql = _dah.GetConnection())
             {
                 using (SqlCommand command = new SqlCommand("SpInvoiceSelOneUser", sql))
                 {
                     command.CommandType = System.Data.CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@json", json));
+                    command.Parameters.Add(new SqlParameter("@json", jsonConvert));
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.HasRows)

@@ -7,6 +7,7 @@ export interface MvInvoice {
     fullName:string
     customerId:number;
     organizationName: string;
+    totalPaid:number
 }
 export interface MvInvoiceDetail{
     invoiceId: number;

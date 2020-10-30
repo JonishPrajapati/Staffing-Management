@@ -132,7 +132,7 @@ export class AssignmentComponent implements OnInit {
   checkStatus(array):boolean{
     let check = false;
     array.forEach(status => {
-        if(status.status != 'active'){
+        if(status.status !== 'active'){
               check = true;
               return;
         }

@@ -11,16 +11,20 @@ export class InvoiceFormComponent implements OnInit {
 
 
   allTotal = 0;
-  selectedInvoice: MvInvoice = <MvInvoice>{};
-  selectedInvoiceDetail: MvInvoiceDetail = <MvInvoiceDetail>{};
+  selectedInvoice: MvInvoice[]=[];
  
   constructor(
     @Inject(MAT_DIALOG_DATA) public data :any,
     public dialogRef: MatDialogRef<InvoiceFormComponent>
   ) {
     dialogRef.disableClose = true;
+    
     this.selectedInvoice = this.data.invoice
-    this.selectedInvoiceDetail = this.data.invoiceDetail;
+    
+    this.selectedInvoice.map(sum=>{
+      this.allTotal += sum.totalPaid
+    })
+    
    }
 
   ngOnInit() {
@@ -29,7 +33,6 @@ export class InvoiceFormComponent implements OnInit {
   cancelClick() {
 
     this.dialogRef.close('close');
-    console.log("cancel");
     
   }
 

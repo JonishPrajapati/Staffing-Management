@@ -10,7 +10,7 @@ namespace StaffManagement.Application.Service.Invoice
         dynamic AddInvoice(IEnumerable<MvInvoice> invoice);
         dynamic GetInvoiceDetail();
 
-        dynamic GetSingleInvoiceDetails(String json);
+        dynamic GetSingleInvoiceDetails(MvInvoice invoice);
     }
 }
 

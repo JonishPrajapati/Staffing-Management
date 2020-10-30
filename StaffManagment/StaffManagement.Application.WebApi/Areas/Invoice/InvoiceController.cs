@@ -51,12 +51,16 @@ namespace StaffManagement.Application.WebApi.Areas.Invoice
 
         }
         [HttpGet]
-        public IActionResult GenerateSingleInvoice(string json)
+        public IActionResult GenerateSingleInvoice(MvInvoice invoice)
         {
-         
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             try
             {
-                var data = _invoiceService.GetSingleInvoiceDetails(json);
+                var data = _invoiceService.GetSingleInvoiceDetails(invoice);
                 return Ok(data);
             }
             catch (Exception)
